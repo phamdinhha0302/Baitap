@@ -6,14 +6,14 @@ DROP TABLE IF EXISTS Department;
 CREATE TABLE Department
 (
 	DepartmentID		INT,
-	DepartmentName		VARCHAR(50),
-)
+	DepartmentName		VARCHAR(50)
+);
 
 DROP TABLE IF EXISTS Position;
-CREATE TABLE 'Position'(
+CREATE TABLE `Position`(
 	PositionID			INT,
-	PositionName		VARCHAR(50),
-)
+	PositionName		VARCHAR(50)
+);
 
 DROP TABLE IF EXISTS Account;
 CREATE TABLE Account(
@@ -23,35 +23,35 @@ CREATE TABLE Account(
 	FullName			VARCHAR(50),
 	DepartmentID		VARCHAR(50),
 	PositionID			VARCHAR(50),
-	CreateDate			DATE,
-)
+	CreateDate			DATE
+);
 
-DROP TABLE IF EXISTS [Group];
-CREATE TABLE [Group](
+DROP TABLE IF EXISTS `Group`;
+CREATE TABLE `Group`(
 	GroupID				INT,
 	GroupName			VARCHAR(50),
 	CreatorID			INT,
-	CreateDate			DATE,
-)
+	CreateDate			DATE
+);
 
 DROP TABLE IF EXISTS GroupAccount;
 CREATE TABLE GroupAccount(
 	GroupID				VARCHAR(50),
 	AccountID			VARCHAR(50),
-	JoinDate			DATE,
-)
+	JoinDate			DATE
+);
 
 DROP TABLE IF EXISTS TypeQuestion;
 CREATE TABLE TypeQuestion(
 	TypeID				VARCHAR(50),
-	TypeName			VARCHAR(50),
-)
+	TypeName			VARCHAR(50)
+);
 
 DROP TABLE IF EXISTS CategoryQuestion;
 CREATE TABLE CategoryQuestion(
 	CategoryID			VARCHAR(50),
-	CategoryName		VARCHAR(50),
-)
+	CategoryName		VARCHAR(50)
+);
 
 DROP TABLE IF EXISTS Question;
 CREATE TABLE Question(
@@ -60,13 +60,30 @@ CREATE TABLE Question(
 	CategoryID			VARCHAR(50),
 	TypeID				VARCHAR(50),
 	CreatorID			INT,
-	CreateDate			DATE,
-)
+	CreateDate			DATE
+);
 
 DROP TABLE IF EXISTS Answer;
 CREATE TABLE Answer(
 	AnswerID			VARCHAR(50),
 	Content				VARCHAR(50),
 	QuestionID			VARCHAR(50),	
-	isCorrect			VARCHAR(50),
-)
+	isCorrect			VARCHAR(50)
+);
+
+DROP TABLE IF EXISTS Exam;
+CREATE TABLE Exam(
+	ExamID				INT ,
+	Code				VARCHAR(50),
+	Title				VARCHAR(50),
+	CategoryID			INT,
+	Duration			INT,
+	CreatorID			INT,
+	CreateDate			DATE
+);
+
+DROP TABLE IF EXISTS ExamQuestion;
+CREATE TABLE ExamQuestion(
+	ExamID				INT,
+    QuestionID			INT
+);
