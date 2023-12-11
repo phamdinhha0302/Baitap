@@ -48,7 +48,7 @@ SELECT * FROM Account;
 INSERT INTO `Group` (GroupID, GroupName, CreatorID, CreateDate) VALUES
 (6, 'Research Team', 8, '2023-01-08'),
 (7, 'Security Task Force', 14, '2023-01-14'),
-(8, 'Training Committee', 15, '2023-01-15'),
+(8, 'Training Committee', 15, '2019-01-15'),
 (9, 'Sales Strategies Group', 6, '2023-01-06'),
 (10, 'Administration Squad', 11, '2023-01-11');
 SELECT * FROM `Group`;
@@ -102,7 +102,11 @@ INSERT INTO Question (QuestionID, Content, CategoryID, TypeID, CreatorID, Create
 (13, 'Ensure smooth logistics and supply chain operations.', 13, 10, 14, '2023-01-14'),
 (14, 'Implement effective security measures in the workplace.', 14, 7, 15, '2023-01-15'),
 (15, 'Design a training program for new employees.', 15, 8, 6, '2023-01-06');
+
+-- Kiểm tra dữ liệu đã được thêm vào bảng Question
 SELECT * FROM Question;
+
+
 
 -- Thêm dữ liệu cho bảng Answer
 INSERT INTO Answer (AnswerID, Content, QuestionID, isCorrect) VALUES
@@ -126,6 +130,9 @@ INSERT INTO Exam (Code, Title, CategoryID, Duration, CreatorID, CreateDate) VALU
 ('EXAM009', 'Market Research Proficiency', 9, 45, 10, '2023-01-19'),
 ('EXAM010', 'Process Optimization Challenge', 10, 75, 11, '2023-01-20');
 SELECT * FROM Exam;
+UPDATE Exam
+SET CreateDate =  '2019-01-20'
+WHERE ExamID = '10' ;
 
 -- Thêm dữ liệu cho bảng ExamQuestion
 INSERT INTO ExamQuestion (ExamID, QuestionID) VALUES
@@ -133,12 +140,7 @@ INSERT INTO ExamQuestion (ExamID, QuestionID) VALUES
 (7, 7),
 (8, 8),
 (9, 9),
-(10, 10),
-(11, 11),
-(12, 12),
-(13, 13),
-(14, 14),
-(15, 15);
+(10, 10);
 SELECT * FROM ExamQuestion;
 
 -- Q3
@@ -155,5 +157,49 @@ SELECT * FROM `Account`
 WHERE LENGTH(FullName) = ( SELECT MAX(LENGTH(FullName)) FROM  `Account` WHERE DepartmentID = 3 ) AND DepartmentID = 3;
 
 -- Q6
+SELECT * FROM `group` 
+WHERE CreateDate <= '2019-12-20';
 
+-- Q7
+SELECT QuestionID FROM Answer
+GROUP BY QuestionID
+HAVING COUNT(*) >=4;
 
+-- Q8
+SELECT Code FROM Exam
+GROUP BY  code
+HAVING MIN(Duration) >= 60 AND MAX(CreateDate <= '2019-12-20');
+
+-- Q9
+SELECT GroupID, MAX(CreateDate) AS RecentCreationDate
+FROM `Group`
+GROUP BY GroupID
+ORDER BY RecentCreationDate DESC
+LIMIT 5;
+
+-- Q10
+SELECT COUNT(*) AS SONHANVIEN
+FROM Account
+WHERE DepartmentID =2 ;
+
+-- Q11
+SELECT FullName FROM Account
+WHERE FullName LIKE  'U%' AND FullName  LIKE  '%x';
+
+-- Q12
+DELETE  FROM Exam 
+WHERE CreateDate < '2019-12-20' ;
+
+-- Q13
+DELETE FROM Question
+WHERE Content LIKE 'câu hỏi%';
+
+-- Q14
+UPDATE Account 
+SET FullName = "Nguyễn Bá Lộc" , Email =  "loc.nguyenba@vti.com.vn"
+WHERE AccountID = 5 ;
+
+-- Q15
+UPDATE GroupAccount
+SET GroupID = 4
+WHERE AccountID = 5;

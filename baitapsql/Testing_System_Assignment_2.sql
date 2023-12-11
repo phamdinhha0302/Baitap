@@ -90,8 +90,8 @@ SELECT * FROM GroupAccount;
 DROP TABLE IF EXISTS TypeQuestion;
 CREATE TABLE TypeQuestion
 (
-	TypeID				INT PRIMARY KEY,
-	TypeName			VARCHAR(255)
+    TypeID INT UNSIGNED PRIMARY KEY,
+    TypeName VARCHAR(255)
 );
 INSERT INTO TypeQuestion (TypeID, TypeName) VALUES
 (1, 'Multiple Choice'),
@@ -118,16 +118,17 @@ SELECT * FROM CategoryQuestion;
 DROP TABLE IF EXISTS Question;
 CREATE TABLE Question
 (
-	QuestionID			INT PRIMARY KEY,
-	Content				VARCHAR(255),
-	CategoryID			INT,
-	TypeID				INT,
-	CreatorID			INT,
-	CreateDate			DATE,
-	FOREIGN KEY (CategoryID) REFERENCES CategoryQuestion(CategoryID),
-	FOREIGN KEY (TypeID) REFERENCES TypeQuestion(TypeID),
-	FOREIGN KEY (CreatorID) REFERENCES Account(AccountID)
+    QuestionID INT PRIMARY KEY,
+    Content VARCHAR(500),
+    CategoryID INT,
+    TypeID INT UNSIGNED,
+    CreatorID INT,
+    CreateDate DATE,
+    FOREIGN KEY (CategoryID) REFERENCES CategoryQuestion(CategoryID),
+    FOREIGN KEY (TypeID) REFERENCES TypeQuestion(TypeID),
+    FOREIGN KEY (CreatorID) REFERENCES Account(AccountID)
 );
+
 INSERT INTO Question (QuestionID, Content, CategoryID, TypeID, CreatorID, CreateDate) VALUES
 (1, 'What is the capital of France?', 2, 1, 1, '2023-01-05'),
 (2, 'What is the main programming language of the web?', 1, 1, 2, '2023-01-06'),
