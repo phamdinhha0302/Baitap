@@ -1,7 +1,12 @@
+import java.sql.Date;
 import java.time.LocalDateTime;
 
 public class Account {
     public int id;
+    public Gender gender;
+    public Date createdDate;
+    public int salary;
+    public Department department;
     String userName;
     //String createDate;
     LocalDateTime createDate;
